@@ -352,13 +352,13 @@
 
       // Update combined counters & progress
       animateNumber(el.collectiveRoundsCounter, stats.total_rounds);
-      el.targetRoundsLabel.textContent = stats.target_rounds.toLocaleString();
-      el.milestoneTargetSpan.textContent = stats.target_rounds.toLocaleString();
+      el.targetRoundsLabel.textContent = formatNumber(stats.target_rounds);
+      el.milestoneTargetSpan.textContent = formatNumber(stats.target_rounds);
       el.collectiveProgressBar.style.width = `${stats.percentage}%`;
       el.percentageVal.textContent = `${stats.percentage}% Achieved`;
-      el.todayRoundsCount.textContent = stats.today_rounds.toLocaleString();
+      el.todayRoundsCount.textContent = formatNumber(stats.today_rounds);
       el.totalDevoteesCount.textContent = stats.active_participants;
-      el.avgDailyRounds.textContent = stats.avg_per_active_devotee.toLocaleString();
+      el.avgDailyRounds.textContent = formatNumber(stats.avg_per_active_devotee);
       el.campaignDatesBadge.textContent = `${formatDateShort(stats.campaign_start_date)} – ${formatDateShort(stats.campaign_end_date)}`;
       el.lampCountText.textContent = `${stats.lamps_offered} Lamps Offered`;
 
@@ -1146,7 +1146,15 @@
     }, 4000);
   }
 
+  function formatNumber(value) {
+    const numericValue = Number(value);
+    return (Number.isFinite(numericValue) ? numericValue : 0).toLocaleString();
+  }
+
   function animateNumber(element, finalValue) {
+    if (!element) return;
+    finalValue = Number(finalValue);
+    if (!Number.isFinite(finalValue)) finalValue = 0;
     const startValue = parseInt(element.textContent.replace(/,/g, ''), 10) || 0;
     if (startValue === finalValue) return;
 
@@ -1158,12 +1166,12 @@
       const progress = Math.min(elapsed / duration, 1);
       const ease = 1 - Math.pow(1 - progress, 3);
       const current = Math.floor(startValue + (finalValue - startValue) * ease);
-      element.textContent = current.toLocaleString();
+      element.textContent = formatNumber(current);
 
       if (progress < 1) {
         requestAnimationFrame(step);
       } else {
-        element.textContent = finalValue.toLocaleString();
+        element.textContent = formatNumber(finalValue);
       }
     }
     requestAnimationFrame(step);
