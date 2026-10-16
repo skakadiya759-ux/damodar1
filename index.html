@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FOLK Damodar Month 2026 - Multi-User Chanting Tracker for FOLK Residence. Track personal and collective Japa, offer lamps, and celebrate Kartika Vrata together.">
+  <meta name="theme-color" content="#120B08">
+  <title>FOLK Damodar Month 2026 | Multi-User Japa Tracker</title>
+  
+  <!-- Ultra-Rich Devotional & Modern Glassmorphism Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Ambient Spiritual Glassmorphic Light Layers -->
+  <div class="ambient-glow glow-top-left" aria-hidden="true"></div>
+  <div class="ambient-glow glow-center" aria-hidden="true"></div>
+  <div class="ambient-glow glow-bottom-right" aria-hidden="true"></div>
+  <div class="ambient-bg-overlay" aria-hidden="true"></div>
+
+  <!-- Main Container -->
+  <div class="app-container">
+
+    <!-- Top Navigation / Community Bar -->
+    <header class="glass-header" id="mainHeader">
+      <div class="brand-area">
+        <div class="brand-badge">
+          <span class="diya-icon" aria-hidden="true">
+            <svg class="svg-diya" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C11.3 3.6 9.8 5.4 9.8 7.3a2.2 2.2 0 1 0 4.4 0c0-1.9-1.5-3.7-2.2-5.3z" fill="#FFAA33"/>
+              <path d="M3.5 13C3.5 17.5 7.3 21 12 21s8.5-3.5 8.5-8c0-1.6-.7-2.9-2.2-3.7-2.6-.9-4.3.4-6.3.4s-3.7-1.3-6.3-.4C4.2 10.1 3.5 11.4 3.5 13z" fill="#E5B45F"/>
+            </svg>
+          </span>
+          <span class="badge-text">Kartika 2026</span>
+        </div>
+        <div class="brand-titles">
+          <h1 class="main-title">FOLK Damodar Month 2026</h1>
+          <p class="sub-title">Residence Collective Japa Yajna &bull; Sri Sri Yashoda Damodar</p>
+        </div>
+      </div>
+
+      <!-- Main Navigation Tabs -->
+      <nav class="nav-links-bar" role="tablist">
+        <button class="nav-tab-btn active" id="navCommunityBtn" role="tab">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v2h20V7L12 2zM4 11v8h3v-8H4zm6 0v8h4v-8h-4zm7 0v8h3v-8h-3zM2 20v2h20v-2H2z"/></svg> Community
+        </button>
+        <button class="nav-tab-btn" id="navMyDashboardBtn" role="tab" style="display: none;">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V18h-2v-1.07A6.002 6.002 0 0 1 6.07 12H5v-2h1.07A6.002 6.002 0 0 1 11 4.07V3h2v1.07A6.002 6.002 0 0 1 17.93 10H19v2h-1.07A6.002 6.002 0 0 1 13 16.93zM12 6a4 4 0 1 0 4 4 4 4 0 0 0-4-4z"/></svg> My Dashboard
+        </button>
+        <button class="nav-tab-btn nav-admin-btn" id="navAdminBtn" role="tab" style="display: none;">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.4 13c0-.3.1-.7.1-1s0-.7-.1-1l2.1-1.7c.2-.2.2-.4.1-.6l-2-3.5c-.1-.2-.4-.3-.6-.2l-2.5 1c-.5-.4-1.1-.8-1.7-1l-.4-2.7c0-.2-.2-.4-.5-.4h-4c-.3 0-.5.2-.5.4l-.4 2.7c-.6.2-1.2.6-1.7 1l-2.5-1c-.2-.1-.5 0-.6.2l-2 3.5c-.1.2-.1.4.1.6L4.6 11c0 .3-.1.7-.1 1s0 .7.1 1l-2.1 1.7c-.2.2-.2.4-.1.6l2 3.5c.1.2.4.3.6.2l2.5-1c.5.4 1.1.8 1.7 1l.4 2.7c0 .2.2.4.5.4h4c.3 0 .5-.2.5-.4l.4-2.7c.6-.2 1.2-.6 1.7-1l2.5 1c.2.1.5 0 .6-.2l2-3.5c.1-.2.1-.4-.1-.6L19.4 13zm-7.4 2.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5z"/></svg> Admin Panel
+        </button>
+      </nav>
+
+      <!-- User Auth State Area -->
+      <div class="header-actions">
+        <!-- Logged Out State -->
+        <div class="auth-guest-controls" id="guestControls">
+          <button class="btn-ghost-pill" id="openLoginModalBtn">Sign In</button>
+          <button class="btn-lamp-action" id="openRegisterModalBtn">Register</button>
+        </div>
+
+        <!-- Logged In State -->
+        <div class="auth-user-controls" id="userControls" style="display: none;">
+          <div class="user-greeting-pill">
+            <span class="user-role-badge" id="navUserRole">Devotee</span>
+            <span class="user-name-text" id="navUserName">Resident</span>
+          </div>
+          <button class="btn-ghost-pill" id="logoutBtn" title="Sign out of account">Sign Out</button>
+        </div>
+
+        <!-- Quick Deepam Offering -->
+        <button class="btn-lamp-action" id="headerOfferLampBtn" title="Offer a warm ghee lamp to Lord Damodar">
+          <svg class="btn-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.5 6 6 9.5 6 13a6 6 0 0 0 12 0c0-3.5-2.5-7-6-11zm0 15a3 3 0 0 1-3-3c0-1.5 1-3 3-5 2 2 3 3.5 3 5a3 3 0 0 1-3 3z"/></svg> Offer Deepam
+        </button>
+      </div>
+    </header>
+
+    <!-- =======================================================================
+         VIEW 1: COMMUNITY DASHBOARD
+         ======================================================================= -->
+    <div class="view-panel" id="viewCommunity">
+
+      <!-- Daily Chanting Rewards & Top 3 Positions Announcement Line -->
+      <div class="rewards-announcement-bar" id="rewardsAnnouncementBar">
+        <div class="rewards-announcement-content">
+          <span class="rewards-gift-icon">
+            <svg class="rewards-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.2A4.5 4.5 0 0 0 12 2.5 4.5 4.5 0 0 0 6.2 6H4c-1.1 0-2 .9-2 2v3c0 .6.4 1 1 1h1v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8h1c.6 0 1-.4 1-1V8c0-1.1-.9-2-2-2zm-9-1.5c0-.8.7-1.5 1.5-1.5s1.5.7 1.5 1.5c0 1.2-1.5 3-1.5 3s-1.5-1.8-1.5-3zm-5.5 13.5v-6h5.5v6H5.5zm13 0h-5.5v-6h5.5v6zm1.5-8H4V8h16v2z"/></svg>
+          </span>
+          <div class="rewards-text-wrap">
+            <span class="rewards-main-text">Chant Daily and Win Exciting Rewards!</span>
+            <span class="rewards-sub-text">Win huge prizes for the 1st, 2nd &amp; 3rd position chanters throughout the month!</span>
+          </div>
+        </div>
+        <div class="rewards-podium-badges">
+          <span class="podium-badge gold"><svg class="podium-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6 7 .9-5 5 1.2 7.1-6.2-3.3-6.2 3.3L7 13.9 2 8.9 9 8z"/></svg> 1st Prize</span>
+          <span class="podium-badge silver"><svg class="podium-svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="6"/><path d="M15.4 14.2L17 22l-5-3-5 3 1.6-7.8"/></svg> 2nd Prize</span>
+          <span class="podium-badge bronze"><svg class="podium-svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="6"/><path d="M15.4 14.2L17 22l-5-3-5 3 1.6-7.8"/></svg> 3rd Prize</span>
+        </div>
+      </div>
+
+      <!-- Hero Section: Central Lord Damodar Theme & Collective Milestone -->
+      <section class="hero-section" id="heroSection">
+        
+        <!-- Visual Showcase Card (Lord Damodar) -->
+        <div class="hero-image-card glass-panel" id="damodarVisualCard">
+          <div class="image-wrapper">
+            <img src="/assets/damodar.png" onerror="if(this.src.indexOf('/damodar.png')===-1)this.src='/damodar.png';" alt="Sri Sri Yashoda Damodar - Lord Krishna tied by Mother Yashoda" id="damodarMainImg" class="damodar-art">
+            <div class="image-overlay-gradient"></div>
+            
+            <div class="lamp-floating-indicator" id="lampFloatingArea">
+              <span class="lamp-icon-animated">
+                <svg class="lamp-svg-icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2C11.3 3.6 9.8 5.4 9.8 7.3a2.2 2.2 0 1 0 4.4 0c0-1.9-1.5-3.7-2.2-5.3z" fill="#FFAA33"/>
+                  <path d="M3.5 13C3.5 17.5 7.3 21 12 21s8.5-3.5 8.5-8c0-1.6-.7-2.9-2.2-3.7-2.6-.9-4.3.4-6.3.4s-3.7-1.3-6.3-.4C4.2 10.1 3.5 11.4 3.5 13z" fill="#E5B45F"/>
+                </svg>
+              </span>
+              <span id="lampCountText">0 Lamps Offered</span>
+            </div>
+
+            <div class="hero-quote-badge">
+              <p class="sanskrit-verse">"namāmīśvaraṁ sac-cid-ānanda-rūpaṁ lasat-kuṇḍalaṁ gokule bhrājamānam"</p>
+              <span class="verse-ref">— Sri Damodarashtaka, Verse 1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collective & FOLK Center Targets Hero Card -->
+        <div class="hero-stats-card glass-panel" id="collectiveOverviewCard">
+          <div class="stats-badge-row">
+            <span class="tag-pill tag-orange">KARTIKA VRATA 2026</span>
+            <span class="tag-pill tag-oatmilk" id="campaignDatesBadge">Oct 25 – Nov 24, 2026</span>
+          </div>
+
+          <!-- Dual Target Cards: Particular FOLK Center & Combined All-Over Target Side-by-Side -->
+          <div class="dual-targets-row">
+            <!-- 1. Particular FOLK Residence Target Card -->
+            <div class="target-subcard center-target-subcard is-my-residence" id="heroCenterTargetCard">
+              <div class="target-subcard-top">
+                <div class="target-subcard-badges">
+                  <span class="tag-pill tag-center" id="heroCenterBadge">FOLK PDEU TARGET</span>
+                  <span class="center-user-status-pill" id="heroCenterUserStatus"><svg class="pill-svg star-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> Your Residence</span>
+                </div>
+                <!-- Interactive Center Switch Pills -->
+                <div class="hero-center-switch-group" id="heroCenterSwitchGroup">
+                  <button type="button" class="hero-switch-btn active" data-center="FOLK PDEU" title="View FOLK PDEU Target">PDEU</button>
+                  <button type="button" class="hero-switch-btn" data-center="FOLK INFOCITY" title="View FOLK INFOCITY Target">INFOCITY</button>
+                </div>
+              </div>
+
+              <div class="counter-display">
+                <span class="counter-label" id="heroCenterSubLabel">FOLK PDEU Chanting</span>
+                <div class="counter-subcard-numbers">
+                  <span id="centerRoundsCounter" class="number-glow">0</span>
+                  <span class="counter-target-label">/ <span id="centerTargetRoundsLabel">5,004</span> <small>ROUNDS</small></span>
+                </div>
+              </div>
+
+              <!-- Center Progress Bar -->
+              <div class="progress-bar-container">
+                <div class="progress-track">
+                  <div class="progress-fill" id="centerProgressBar" style="width: 0%;">
+                    <div class="progress-flame"></div>
+                  </div>
+                </div>
+                <div class="progress-milestones">
+                  <span>0</span>
+                  <span id="centerPctLabel">0.0% Achieved</span>
+                  <span id="centerMilestoneSpan">5,004</span>
+                </div>
+              </div>
+
+              <div class="subcard-stats-grid">
+                <div class="subcard-stat-box">
+                  <span class="subcard-stat-val" id="centerActiveCount">0</span>
+                  <span class="subcard-stat-lbl">Active Boys</span>
+                </div>
+                <div class="subcard-stat-box">
+                  <span class="subcard-stat-val" id="centerTodayCount">0</span>
+                  <span class="subcard-stat-lbl">Today</span>
+                </div>
+                <div class="subcard-stat-box">
+                  <span class="subcard-stat-val" id="centerPctVal">0.0%</span>
+                  <span class="subcard-stat-lbl">Target %</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Combined All-Over Target Card -->
+            <div class="target-subcard combined-target-subcard" id="heroCombinedTargetCard">
+              <div class="target-subcard-top">
+                <div class="target-subcard-badges">
+                  <span class="tag-pill tag-gold">COMBINED ALL-OVER TARGET</span>
+                  <span class="all-folk-pill"><svg class="pill-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg> Combined Total</span>
+                </div>
+              </div>
+
+              <div class="counter-display">
+                <span class="counter-label">All FOLK Residences Combined</span>
+                <div class="counter-subcard-numbers">
+                  <span id="collectiveRoundsCounter" class="number-glow">0</span>
+                  <span class="counter-target-label">/ <span id="targetRoundsLabel">10,008</span> <small>ROUNDS</small></span>
+                </div>
+              </div>
+
+              <!-- Combined Progress Bar -->
+              <div class="progress-bar-container">
+                <div class="progress-track">
+                  <div class="progress-fill" id="collectiveProgressBar" style="width: 0%;">
+                    <div class="progress-flame"></div>
+                  </div>
+                </div>
+                <div class="progress-milestones">
+                  <span>0</span>
+                  <span id="percentageVal">0.0% Achieved</span>
+                  <span id="milestoneTargetSpan">10,008</span>
+                </div>
+              </div>
+
+              <div class="subcard-stats-grid">
+                <div class="subcard-stat-box">
+                  <span class="subcard-stat-val" id="totalDevoteesCount">0</span>
+                  <span class="subcard-stat-lbl">Active Boys</span>
+                </div>
+                <div class="subcard-stat-box">
+                  <span class="subcard-stat-val" id="todayRoundsCount">0</span>
+                  <span class="subcard-stat-lbl">Grand Today</span>
+                </div>
+                <div class="subcard-stat-box">
+                  <span class="subcard-stat-val" id="avgDailyRounds">0</span>
+                  <span class="subcard-stat-lbl">Avg / Boy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Damodarashtaka Song Drawer Toggle -->
+          <div class="verse-accordion-bar">
+            <button class="btn-ghost-sm" id="toggleDamodarashtakaBtn" type="button">
+              <span class="btn-text-with-svg"><svg class="book-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg> Sri Damodarashtaka Verses & Meaning</span>
+              <span id="accordionArrow" class="accordion-arrow-wrap"><svg class="chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Damodarashtaka Verses Collapsible Drawer -->
+      <section class="glass-panel damodarashtaka-drawer" id="damodarashtakaDrawer" style="display: none;">
+        <div class="drawer-header">
+          <h3 class="drawer-title">Sri Damodarashtaka &bull; श्री दामोदराष्टकम्</h3>
+          <span class="drawer-subtitle">Composed by Satyavrata Muni in the Padma Purana</span>
+        </div>
+        <div class="verses-grid" id="versesGrid">
+          <!-- Injected via JavaScript -->
+        </div>
+      </section>
+
+      <!-- Community Leaderboard Section -->
+      <section class="glass-panel leaderboard-panel" id="communityLeaderboardSection">
+        <div class="panel-header-flex">
+          <div>
+            <h2 class="panel-title">Combined Residence Leaderboard</h2>
+            <p class="panel-subtitle">Transparent combined rankings of all FOLK boys from both centers with residency displayed</p>
+          </div>
+
+          <div class="leaderboard-filters-row">
+            <!-- Residence Filter Pills -->
+            <div class="residence-filter-group" id="residenceFilterGroup">
+              <button class="filter-pill active" data-residence="ALL">All Centers (Combined)</button>
+              <button class="filter-pill" data-residence="FOLK PDEU">FOLK PDEU</button>
+              <button class="filter-pill" data-residence="FOLK INFOCITY">FOLK INFOCITY</button>
+            </div>
+
+            <!-- Search Filter -->
+            <div class="search-wrap" style="max-width: 220px;">
+              <span class="search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></span>
+              <input type="text" id="leaderboardSearchInput" placeholder="Search devotee..." aria-label="Search resident">
+            </div>
+          </div>
+        </div>
+
+        <!-- Leaderboard Table Container -->
+        <div class="submissions-table-wrap">
+          <table class="glass-table">
+            <thead>
+              <tr>
+                <th style="width: 70px;">Rank</th>
+                <th>Devotee Name</th>
+                <th>Residence</th>
+                <th>Daily Streak</th>
+                <th>Username</th>
+                <th style="text-align: right;">Total Rounds</th>
+                <th style="text-align: center;">Active Days</th>
+                <th style="text-align: right;">Contribution</th>
+                <th>Last Offering</th>
+              </tr>
+            </thead>
+            <tbody id="communityLeaderboardBody">
+              <!-- Injected dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- =======================================================================
+         VIEW 2: INDIVIDUAL RESIDENT DASHBOARD
+         ======================================================================= -->
+    <div class="view-panel" id="viewMyDashboard" style="display: none;">
+
+      <!-- Resident Profile & Personal Progress Header -->
+      <section class="glass-panel resident-hero-card">
+        <div class="resident-profile-row">
+          <div class="resident-avatar"><svg class="avatar-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V18h-2v-1.07A6.002 6.002 0 0 1 6.07 12H5v-2h1.07A6.002 6.002 0 0 1 11 4.07V3h2v1.07A6.002 6.002 0 0 1 17.93 10H19v2h-1.07A6.002 6.002 0 0 1 13 16.93zM12 6a4 4 0 1 0 4 4 4 4 0 0 0-4-4z"/></svg></div>
+          <div class="resident-meta">
+            <h2 class="resident-title">Hare Krishna, <span id="residentProfileName">Devotee</span>!</h2>
+            <p class="resident-sub">@<span id="residentProfileUsername">username</span> &bull; FOLK Resident Account</p>
+          </div>
+          <div class="resident-goal-box">
+            <div class="goal-labels">
+              <span>Personal Goal: <strong id="residentPersonalGoalVal">496</strong> rounds</span>
+              <button class="btn-micro" id="openEditGoalBtn">Edit Goal</button>
+            </div>
+            <div class="progress-track" style="height: 12px; margin-top: 6px;">
+              <div class="progress-fill" id="personalProgressBar" style="width: 0%;"></div>
+            </div>
+            <span class="goal-pct-sub" id="personalProgressPctText">0% of personal goal achieved</span>
+          </div>
+        </div>
+
+        <!-- Personal Stat Cards -->
+        <div class="metrics-grid" style="margin-top: 20px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+          <div class="metric-box">
+            <span class="metric-val number-glow" id="myTotalRounds">0</span>
+            <span class="metric-lbl">Total Rounds Chanted</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-val" id="myTodayRounds">0</span>
+            <span class="metric-lbl">Rounds Today</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-val" id="myStreakCount" style="color: var(--color-orange-light);"><svg class="flame-metric-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.5 6 6 9.5 6 13a6 6 0 0 0 12 0c0-3.5-2.5-7-6-11zm0 15a3 3 0 0 1-3-3c0-1.5 1-3 3-5 2 2 3 3.5 3 5a3 3 0 0 1-3 3z"/></svg> 0 Days</span>
+            <span class="metric-lbl">Daily Japa Streak</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-val" id="myContributionPct">0%</span>
+            <span class="metric-lbl">FOLK Community Share</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-val" id="myTotalSubmissions">0</span>
+            <span class="metric-lbl">Logged Sessions</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Logging & Personal History Grid -->
+      <div class="tracker-layout">
+
+        <!-- Form: Log Daily Rounds -->
+        <section class="glass-panel form-panel">
+          <div class="panel-header">
+            <div class="panel-icon-wrap">
+              <span class="panel-icon"><svg class="header-icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L9.5 8.5 3 11l6.5 2.5L12 20l2.5-6.5L21 11l-6.5-2.5z"/></svg></span>
+            </div>
+            <div>
+              <h2 class="panel-title">Offer Daily Japa</h2>
+              <p class="panel-subtitle">Record rounds for Lord Damodar</p>
+            </div>
+          </div>
+
+          <form id="personalJapaForm" class="japa-form" autocomplete="off">
+            <div class="form-group">
+              <label for="personalChantingDate">Date of Chanting</label>
+              <input type="date" id="personalChantingDate" required>
+            </div>
+
+            <div class="form-group">
+              <label for="personalRoundsInput">Number of Rounds</label>
+              <div class="stepper-wrapper">
+                <button type="button" class="stepper-btn" id="myDecRoundsBtn">−</button>
+                <input type="number" id="personalRoundsInput" min="1" max="192" value="16" required>
+                <button type="button" class="stepper-btn" id="myIncRoundsBtn">+</button>
+              </div>
+
+              <!-- Quick Add Pills -->
+              <div class="quick-add-group">
+                <span class="quick-add-label">Quick:</span>
+                <button type="button" class="quick-pill" data-myrounds="1">+1</button>
+                <button type="button" class="quick-pill" data-myrounds="4">+4</button>
+                <button type="button" class="quick-pill active" data-myrounds="16">16 (1 Harinama)</button>
+                <button type="button" class="quick-pill" data-myrounds="32">+32</button>
+                <button type="button" class="quick-pill" data-myrounds="64">64 (Lakshya)</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="personalNotesInput">Notes / Reflections (Optional)</label>
+              <input type="text" id="personalNotesInput" placeholder="e.g. Morning Brahma Muhurta Japa..." maxlength="200">
+            </div>
+
+            <button type="submit" class="btn-submit-orange" id="submitMyRoundsBtn">
+              <span class="btn-icon"><svg class="action-btn-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.5 6 6 9.5 6 13a6 6 0 0 0 12 0c0-3.5-2.5-7-6-11zm0 15a3 3 0 0 1-3-3c0-1.5 1-3 3-5 2 2 3 3.5 3 5a3 3 0 0 1-3 3z"/></svg></span>
+              <span class="btn-text">Record My Offering</span>
+            </button>
+          </form>
+        </section>
+
+        <!-- Personal History Table -->
+        <section class="glass-panel leaderboard-panel">
+          <div class="panel-header-flex">
+            <div>
+              <h2 class="panel-title">My Chanting Records</h2>
+              <p class="panel-subtitle">Your personal daily submission history</p>
+            </div>
+          </div>
+
+          <div class="submissions-table-wrap">
+            <table class="glass-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Rounds</th>
+                  <th>Notes</th>
+                  <th>Logged</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="myEntriesTableBody">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+    <!-- =======================================================================
+         VIEW 3: ADMIN DASHBOARD (Protected)
+         ======================================================================= -->
+    <div class="view-panel" id="viewAdminDashboard" style="display: none;">
+
+      <!-- Admin Overview Banner -->
+      <section class="glass-panel" style="padding: 24px 28px;">
+        <div class="panel-header-flex">
+          <div>
+            <h2 class="panel-title"><svg class="title-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.4 13c0-.3.1-.7.1-1s0-.7-.1-1l2.1-1.7c.2-.2.2-.4.1-.6l-2-3.5c-.1-.2-.4-.3-.6-.2l-2.5 1c-.5-.4-1.1-.8-1.7-1l-.4-2.7c0-.2-.2-.4-.5-.4h-4c-.3 0-.5.2-.5.4l-.4 2.7c-.6.2-1.2.6-1.7 1l-2.5-1c-.2-.1-.5 0-.6.2l-2 3.5c-.1.2-.1.4.1.6L4.6 11c0 .3-.1.7-.1 1s0 .7.1 1l-2.1 1.7c-.2.2-.2.4-.1.6l2 3.5c.1.2.4.3.6.2l2.5-1c.5.4 1.1.8 1.7 1l.4 2.7c0 .2.2.4.5.4h4c.3 0 .5-.2.5-.4l.4-2.7c.6-.2 1.2-.6 1.7-1l2.5 1c.2.1.5 0 .6-.2l2-3.5c.1-.2.1-.4-.1-.6L19.4 13zm-7.4 2.5c-1.9 0-3.5-1.6-3.5-3.5s1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5-1.6 3.5-3.5 3.5z"/></svg> FOLK Administration &amp; Moderation</h2>
+            <p class="panel-subtitle">Manage residence accounts, configure campaign targets, and moderate chanting records</p>
+          </div>
+          <button class="btn-lamp-action" id="adminExportCsvBtn">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> Export All Records (CSV)
+          </button>
+        </div>
+
+        <div class="metrics-grid" style="margin-top: 16px;">
+          <div class="metric-box">
+            <span class="metric-val" id="adminTotalResidents">0</span>
+            <span class="metric-lbl">Total Registered Residents</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-val" id="adminActiveResidents">0</span>
+            <span class="metric-lbl">Active Residents</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-val" id="adminTotalEntries">0</span>
+            <span class="metric-lbl">Total Submissions</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-val" id="adminTotalRounds">0</span>
+            <span class="metric-lbl">Grand Community Total</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Admin Config & Moderation Tabs Grid -->
+      <div class="tracker-layout" style="margin-top: 24px;">
+
+        <!-- Campaign Settings Card -->
+        <section class="glass-panel form-panel">
+          <div class="panel-header">
+            <span class="panel-icon"><svg class="header-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg></span>
+            <div>
+              <h3 class="panel-title" style="font-size: 1.15rem;">Campaign Settings</h3>
+              <p class="panel-subtitle">Configure Damodar Month 2026 targets</p>
+            </div>
+          </div>
+
+          <form id="adminSettingsForm" class="japa-form">
+            <div class="form-group">
+              <label for="adminCommunityTargetInput">Combined All-Over Target (Total Rounds)</label>
+              <input type="number" id="adminCommunityTargetInput" min="100" max="10000000" placeholder="e.g. 10008" required>
+            </div>
+
+            <div class="form-group">
+              <label for="adminPdeuTargetInput">FOLK PDEU Target (Rounds)</label>
+              <input type="number" id="adminPdeuTargetInput" min="10" max="5000000" placeholder="e.g. 5004" required>
+            </div>
+
+            <div class="form-group">
+              <label for="adminInfocityTargetInput">FOLK INFOCITY Target (Rounds)</label>
+              <input type="number" id="adminInfocityTargetInput" min="10" max="5000000" placeholder="e.g. 5004" required>
+            </div>
+
+            <div class="form-group">
+              <label for="adminStartDateInput">Campaign Start Date</label>
+              <input type="date" id="adminStartDateInput" required>
+            </div>
+
+            <div class="form-group">
+              <label for="adminEndDateInput">Campaign End Date</label>
+              <input type="date" id="adminEndDateInput" required>
+            </div>
+
+            <button type="submit" class="btn-submit-orange">Save All Targets & Dates</button>
+          </form>
+        </section>
+
+        <!-- Manage Resident Accounts Card -->
+        <section class="glass-panel leaderboard-panel">
+          <div class="panel-header-flex">
+            <div>
+              <h3 class="panel-title" style="font-size: 1.15rem;">Resident Accounts</h3>
+              <p class="panel-subtitle">Activate, deactivate, or review accounts</p>
+            </div>
+          </div>
+
+          <div class="submissions-table-wrap">
+            <table class="glass-table">
+              <thead>
+                <tr>
+                  <th>Devotee Name</th>
+                  <th>Username</th>
+                  <th>Residence</th>
+                  <th>Streak</th>
+                  <th>Total Rounds</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminResidentsTableBody">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Moderation & Audit Log Row -->
+      <section class="glass-panel" style="padding: 24px 28px; margin-top: 24px;">
+        <div class="panel-header-flex">
+          <div>
+            <h3 class="panel-title" style="font-size: 1.15rem;"><svg class="title-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg> Administrative Audit Trail</h3>
+            <p class="panel-subtitle">Log of security actions, user registrations, and moderated entries</p>
+          </div>
+          <button class="btn-micro" id="adminRefreshAuditBtn">Refresh Logs</button>
+        </div>
+
+        <div class="submissions-table-wrap" style="max-height: 280px; margin-top: 14px;">
+          <table class="glass-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Actor</th>
+                <th>Action</th>
+                <th>Target</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody id="adminAuditTableBody">
+              <!-- Injected via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- =======================================================================
+         MODALS (Auth, Forced Password Change, Edit Entry, Edit Goal, Deepam)
+         ======================================================================= -->
+
+    <!-- 1. Sign In Modal -->
+    <div class="modal-backdrop" id="loginModal" style="display: none;" aria-hidden="true">
+      <div class="modal-glass-card">
+        <button class="modal-close-btn" id="closeLoginModalBtn">&times;</button>
+        <div class="modal-flame-icon"><svg class="modal-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></div>
+        <h3 class="modal-title">Devotee Sign In</h3>
+        <p class="modal-desc">Access your FOLK chanting dashboard</p>
+        
+        <form id="loginForm" class="modal-form">
+          <div class="form-group">
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" placeholder="e.g. nitai" required autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn-submit-orange modal-action-btn" id="submitLoginBtn">
+            Sign In
+          </button>
+          <p class="modal-switch-text">
+            New resident? <a href="#" id="switchToRegisterLink">Create an account</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- 2. Register Modal -->
+    <div class="modal-backdrop" id="registerModal" style="display: none;" aria-hidden="true">
+      <div class="modal-glass-card">
+        <button class="modal-close-btn" id="closeRegisterModalBtn">&times;</button>
+        <div class="modal-flame-icon"><svg class="modal-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1.5 3 3.5 5 6 6-2.5 1-4.5 3-6 6-1.5-3-3.5-5-6-6 2.5-1 4.5-3 6-6zM5 16c2 1 3.5 2.5 4.5 4.5-1 2-2.5 3.5-4.5 4.5-1-2-2.5-3.5-4.5-4.5 2-1 3.5-2.5 4.5-4.5zm14 0c2 1 3.5 2.5 4.5 4.5-1 2-2.5 3.5-4.5 4.5-1-2-2.5-3.5-4.5-4.5 2-1 3.5-2.5 4.5-4.5z"/></svg></div>
+        <h3 class="modal-title">FOLK Registration</h3>
+        <p class="modal-desc">Join the Damodar Month 2026 collective japa</p>
+        
+        <form id="registerForm" class="modal-form">
+          <div class="form-group">
+            <label for="registerFullName">Full Name</label>
+            <input type="text" id="registerFullName" placeholder="e.g. Gaurav Sharma" required>
+          </div>
+          <div class="form-group">
+            <label for="registerResidence">FOLK Residence</label>
+            <select id="registerResidence" required>
+              <option value="FOLK PDEU" selected>FOLK PDEU</option>
+              <option value="FOLK INFOCITY">FOLK INFOCITY</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="registerUsername">Username (Letters, numbers, underscores)</label>
+            <input type="text" id="registerUsername" placeholder="e.g. gaurav_s" required maxlength="24">
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">Password (Min 6 characters)</label>
+            <input type="password" id="registerPassword" placeholder="••••••••" required minlength="6">
+          </div>
+          <div class="form-group">
+            <label for="registerGoal">Monthly Personal Goal (Rounds)</label>
+            <input type="number" id="registerGoal" value="496" min="16" max="100000" required>
+            <small style="color: var(--color-oatmilk-muted); font-size: 0.72rem;">Default 496 rounds = 16 rounds/day &times; 31 days</small>
+          </div>
+          <button type="submit" class="btn-submit-orange modal-action-btn" id="submitRegisterBtn">
+            Create Account
+          </button>
+          <p class="modal-switch-text">
+            Already have an account? <a href="#" id="switchToLoginLink">Sign in here</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- 3. Forced Admin Password Change Modal -->
+    <div class="modal-backdrop" id="forcedPasswordModal" style="display: none;" aria-hidden="true">
+      <div class="modal-glass-card" style="border-color: var(--color-orange);">
+        <div class="modal-flame-icon"><svg class="modal-svg alert-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></div>
+        <h3 class="modal-title">First-Time Admin Setup</h3>
+        <p class="modal-desc" style="color: #FFC091;">
+          For security, the administrator account must change its initial setup password before accessing any functions.
+        </p>
+        
+        <form id="forcedPasswordForm" class="modal-form">
+          <div class="form-group">
+            <label for="forcedCurrentPassword">Current Password (smith@123)</label>
+            <input type="password" id="forcedCurrentPassword" required autocomplete="current-password">
+          </div>
+          <div class="form-group">
+            <label for="forcedNewPassword">New Strong Password</label>
+            <input type="password" id="forcedNewPassword" placeholder="Minimum 6 characters" required minlength="6" autocomplete="new-password">
+          </div>
+          <div class="form-group">
+            <label for="forcedConfirmPassword">Confirm New Password</label>
+            <input type="password" id="forcedConfirmPassword" required minlength="6" autocomplete="new-password">
+          </div>
+          <button type="submit" class="btn-submit-orange modal-action-btn">
+            Update Password & Proceed
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 4. Edit Personal Entry Modal -->
+    <div class="modal-backdrop" id="editEntryModal" style="display: none;" aria-hidden="true">
+      <div class="modal-glass-card">
+        <button class="modal-close-btn" id="closeEditEntryModalBtn">&times;</button>
+        <h3 class="modal-title">Correct Chanting Record</h3>
+        <p class="modal-desc">Update your submitted rounds count or date</p>
+        
+        <form id="editEntryForm" class="modal-form">
+          <input type="hidden" id="editEntryId">
+          <div class="form-group">
+            <label for="editEntryDate">Date</label>
+            <input type="date" id="editEntryDate" required>
+          </div>
+          <div class="form-group">
+            <label for="editEntryRounds">Rounds Chanted</label>
+            <input type="number" id="editEntryRounds" min="1" max="192" required>
+          </div>
+          <div class="form-group">
+            <label for="editEntryNotes">Notes</label>
+            <input type="text" id="editEntryNotes" maxlength="200">
+          </div>
+          <button type="submit" class="btn-submit-orange modal-action-btn">
+            Save Correction
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 5. Edit Personal Goal Modal -->
+    <div class="modal-backdrop" id="editGoalModal" style="display: none;" aria-hidden="true">
+      <div class="modal-glass-card">
+        <button class="modal-close-btn" id="closeEditGoalModalBtn">&times;</button>
+        <h3 class="modal-title">Update Personal Goal</h3>
+        <p class="modal-desc">Set your personal target rounds for Damodar Month 2026</p>
+        
+        <form id="editGoalForm" class="modal-form">
+          <div class="form-group">
+            <label for="editPersonalGoalInput">Target Rounds (e.g. 496, 1008)</label>
+            <input type="number" id="editPersonalGoalInput" min="16" max="100000" required>
+          </div>
+          <button type="submit" class="btn-submit-orange modal-action-btn">
+            Update Goal
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 6. Offer Deepam Modal -->
+    <div class="modal-backdrop" id="lampModal" style="display: none;" aria-hidden="true">
+      <div class="modal-glass-card">
+        <button class="modal-close-btn" id="closeLampModalBtn">&times;</button>
+        <div class="modal-flame-icon"><svg class="modal-svg diya-modal-svg" viewBox="0 0 24 24" fill="none"><path d="M12 2C11.3 3.6 9.8 5.4 9.8 7.3a2.2 2.2 0 1 0 4.4 0c0-1.9-1.5-3.7-2.2-5.3z" fill="#FFAA33"/><path d="M3.5 13C3.5 17.5 7.3 21 12 21s8.5-3.5 8.5-8c0-1.6-.7-2.9-2.2-3.7-2.6-.9-4.3.4-6.3.4s-3.7-1.3-6.3-.4C4.2 10.1 3.5 11.4 3.5 13z" fill="#E5B45F"/></svg></div>
+        <h3 class="modal-title">Sri Damodara Deepa-Dāna</h3>
+        <p class="modal-desc">Offer a pure ghee lamp to Mother Yashoda and Baby Krishna with heartfelt prayers for pure devotion.</p>
+        
+        <div class="modal-form">
+          <label for="lampOffererName">Devotee Offering the Lamp</label>
+          <input type="text" id="lampOffererName" placeholder="Enter your name..." maxlength="30">
+          
+          <button class="btn-submit-orange modal-action-btn" id="confirmLampOfferBtn">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C11.3 3.6 9.8 5.4 9.8 7.3a2.2 2.2 0 1 0 4.4 0c0-1.9-1.5-3.7-2.2-5.3z" fill="#FFAA33"/><path d="M3.5 13C3.5 17.5 7.3 21 12 21s8.5-3.5 8.5-8c0-1.6-.7-2.9-2.2-3.7-2.6-.9-4.3.4-6.3.4s-3.7-1.3-6.3-.4C4.2 10.1 3.5 11.4 3.5 13z" fill="#E5B45F"/></svg> Light Sacred Diya
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Popup -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- Footer -->
+    <footer class="glass-footer">
+      <div class="footer-content">
+        <p class="footer-title">FOLK Damodar Month 2026 &bull; Friends of Lord Krishna</p>
+        <p class="footer-blessing">
+          <em>"Hare Krishna Hare Krishna Krishna Krishna Hare Hare &bull; Hare Rama Hare Rama Rama Rama Hare Hare"</em>
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

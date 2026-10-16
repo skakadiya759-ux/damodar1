@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="flameGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#fff5b4" />
+      <stop offset="40%" stop-color="#ffb703" />
+      <stop offset="100%" stop-color="#fb8500" />
+    </linearGradient>
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffb703" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ffb703" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="clayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d47a3e" />
+      <stop offset="100%" stop-color="#8b3e1b" />
+    </linearGradient>
+  </defs>
+  <!-- Ambient flame glow -->
+  <circle cx="32" cy="24" r="22" fill="url(#glowGrad)"/>
+  <!-- Diya clay base -->
+  <path d="M 8 38 Q 32 58 56 38 C 50 48 14 48 8 38 Z" fill="url(#clayGrad)" />
+  <ellipse cx="32" cy="38" rx="24" ry="5" fill="#a44a1e" />
+  <ellipse cx="32" cy="37" rx="20" ry="3.5" fill="#f8d488" opacity="0.8" />
+  <!-- Sacred Flame -->
+  <path d="M 32 6 C 24 18 20 28 27 36 C 30 40 34 40 37 36 C 44 28 40 18 32 6 Z" fill="url(#flameGrad)" />
+  <!-- Flame inner core -->
+  <path d="M 32 16 C 28 22 26 28 30 33 C 31 35 33 35 34 33 C 38 28 36 22 32 16 Z" fill="#ffffff" opacity="0.9" />
+</svg>
