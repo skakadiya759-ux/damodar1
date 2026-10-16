@@ -1,7 +1,10 @@
 
 /**
  * FOLK Damodar Month 2026 - SQLite Database Layer
- * WARNING: Vercel /tmp SQLite is temporary, not a persistent database.
+ *
+ * IMPORTANT:
+ * Vercel /tmp storage is temporary. Use a persistent database
+ * for production data and reliable multi-user sessions.
  */
 
 const { DatabaseSync } = require('node:sqlite');
@@ -101,8 +104,9 @@ function initDatabase() {
       ON sessions(expires_at);
   `);
 
-  // Safe migration: add residence only if missing.
+  // Add residence column only if it is missing.
   const columns = db.prepare('PRAGMA table_info(users)').all();
+
   if (!columns.some(column => column.name === 'residence')) {
     db.exec(
       "ALTER TABLE users ADD COLUMN residence TEXT NOT NULL DEFAULT 'FOLK PDEU'"
@@ -142,16 +146,10 @@ function provisionAdminUser() {
     'SELECT id FROM users WHERE username = ?'
   ).get('admin');
 
-  /*
-   * TEMPORARY RESET:
-   * Set RESET_ADMIN_PASSWORD=true in Vercel Environment Variables
-   * only when you intentionally want to reset the admin credentials.
-   *
-   * Remove/disable that variable immediately after the reset attempt.
-   */
   const resetRequested =
     process.env.RESET_ADMIN_PASSWORD === 'true';
 
+  // Explicitly requested reset of an existing admin.
   if (admin && resetRequested) {
     const passwordHash = bcrypt.hashSync('smith@123', 12);
     const now = new Date().toISOString();
@@ -162,16 +160,13 @@ function provisionAdminUser() {
           role = 'admin',
           is_active = 1,
           must_change_password = 1
-      WHERE username = ?
-    `).run(passwordHash, 'admin');
+      WHERE id = ?
+    `).run(passwordHash, admin.id);
 
-    // Invalidate previous sessions for the admin.
-    db.prepare(`
-      DELETE FROM sessions
-      WHERE user_id = (
-        SELECT id FROM users WHERE username = ?
-      )
-    `).run('admin');
+    // Invalidate old sessions for this admin.
+    db.prepare(
+      'DELETE FROM sessions WHERE user_id = ?'
+    ).run(admin.id);
 
     db.prepare(`
       INSERT INTO audit_logs
@@ -181,19 +176,20 @@ function provisionAdminUser() {
               'admin', ?, '127.0.0.1', ?)
     `).run(
       admin.id,
-      'Admin password reset using temporary deployment setting',
+      'Administrator password reset',
       now
     );
 
-    console.log('Admin reset performed for this database instance.');
+    console.log('Admin password reset attempted for this database.');
     return;
   }
 
-  // Do not overwrite an existing administrator's password automatically.
+  // Never overwrite an existing admin password automatically.
   if (admin) {
     return;
   }
 
+  // Create initial admin only when no admin account exists.
   const passwordHash = bcrypt.hashSync('smith@123', 12);
   const now = new Date().toISOString();
 
@@ -213,6 +209,8 @@ function provisionAdminUser() {
     now
   );
 
+  const adminId = Number(result.lastInsertRowid);
+
   db.prepare(`
     INSERT INTO audit_logs
       (user_id, actor_name, action, target_type, target_id,
@@ -220,8 +218,8 @@ function provisionAdminUser() {
     VALUES (?, 'System', 'ADMIN_PROVISIONED', 'users', 'admin',
             ?, '127.0.0.1', ?)
   `).run(
-    Number(result.lastInsertRowid),
-    'Initial administrator created',
+    adminId,
+    'Initial administrator account created',
     now
   );
 }
