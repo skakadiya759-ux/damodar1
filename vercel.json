@@ -2,10 +2,7 @@
   "version": 2,
   "outputDirectory": "public",
   "rewrites": [
-    {
-      "source": "/api/:match*",
-      "destination": "/api"
-    },
+    
     {
       "source": "/damodar.png",
       "destination": "/damodar.png"
