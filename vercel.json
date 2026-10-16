@@ -1,7 +1,7 @@
 
 {
-  "version": 2,
-  "outputDirectory": "public",
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "express",
   "headers": [
     {
       "source": "/style.css",
@@ -18,33 +18,6 @@
         {
           "key": "Content-Type",
           "value": "application/javascript; charset=utf-8"
-        }
-      ]
-    },
-    {
-      "source": "/favicon.ico",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/x-icon"
-        }
-      ]
-    },
-    {
-      "source": "/favicon.svg",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/svg+xml"
-        }
-      ]
-    },
-    {
-      "source": "/damodar.png",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "image/png"
         }
       ]
     }
