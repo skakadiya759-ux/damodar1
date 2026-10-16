@@ -1,38 +1,35 @@
+
 /**
  * FOLK Damodar Month 2026 - SQLite Database Layer
- * Uses Node.js native DatabaseSync with prepared statements and transactions.
+ * WARNING: Vercel /tmp SQLite is temporary, not a persistent database.
  */
 
 const { DatabaseSync } = require('node:sqlite');
 const path = require('node:path');
 const bcrypt = require('bcryptjs');
-
 const fs = require('node:fs');
 
-// On Vercel Serverless, the root filesystem is read-only. We copy the seed DB to /tmp if on Vercel.
 const isVercel = Boolean(process.env.VERCEL);
 let DB_PATH = path.join(__dirname, 'damodar2026.sqlite');
 
 if (isVercel) {
   const tmpDb = '/tmp/damodar2026.sqlite';
+
   if (!fs.existsSync(tmpDb) && fs.existsSync(DB_PATH)) {
     try {
       fs.copyFileSync(DB_PATH, tmpDb);
-    } catch (e) {
-      console.warn('Could not copy sqlite to /tmp:', e);
+    } catch (error) {
+      console.error('Could not copy SQLite database:', error);
     }
   }
+
   DB_PATH = tmpDb;
 }
 
 const db = new DatabaseSync(DB_PATH);
 
-// Enable foreign keys and WAL mode for reliability
 db.exec('PRAGMA foreign_keys = ON;');
 
-/**
- * Initialize Database Tables
- */
 function initDatabase() {
   db.exec(`
     CREATE TABLE IF NOT EXISTS users (
@@ -94,77 +91,141 @@ function initDatabase() {
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
     );
 
-    CREATE INDEX IF NOT EXISTS idx_entries_user_date ON chanting_entries(user_id, date);
-    CREATE INDEX IF NOT EXISTS idx_entries_date ON chanting_entries(date);
-    CREATE INDEX IF NOT EXISTS idx_sessions_expires ON sessions(expires_at);
+    CREATE INDEX IF NOT EXISTS idx_entries_user_date
+      ON chanting_entries(user_id, date);
+
+    CREATE INDEX IF NOT EXISTS idx_entries_date
+      ON chanting_entries(date);
+
+    CREATE INDEX IF NOT EXISTS idx_sessions_expires
+      ON sessions(expires_at);
   `);
 
-  // Column migration for residence
-  try {
-    db.exec(`ALTER TABLE users ADD COLUMN residence TEXT NOT NULL DEFAULT 'FOLK PDEU';`);
-  } catch (e) {
-    // Column already exists
+  // Safe migration: add residence only if missing.
+  const columns = db.prepare('PRAGMA table_info(users)').all();
+  if (!columns.some(column => column.name === 'residence')) {
+    db.exec(
+      "ALTER TABLE users ADD COLUMN residence TEXT NOT NULL DEFAULT 'FOLK PDEU'"
+    );
   }
 
-  // Initialize Default Tracker Settings
-  const checkSetting = db.prepare('SELECT value FROM tracker_settings WHERE key = ?');
-  const insertSetting = db.prepare('INSERT INTO tracker_settings (key, value, updated_at) VALUES (?, ?, ?)');
   const now = new Date().toISOString();
 
-  if (!checkSetting.get('community_target')) {
-    insertSetting.run('community_target', '10008', now);
-  }
-  if (!checkSetting.get('target_folk_pdeu')) {
-    insertSetting.run('target_folk_pdeu', '5004', now);
-  }
-  if (!checkSetting.get('target_folk_infocity')) {
-    insertSetting.run('target_folk_infocity', '5004', now);
-  }
-  if (!checkSetting.get('campaign_start_date')) {
-    insertSetting.run('campaign_start_date', '2026-10-25', now);
-  }
-  if (!checkSetting.get('campaign_end_date')) {
-    insertSetting.run('campaign_end_date', '2026-11-24', now);
+  const defaults = [
+    ['community_target', '10008'],
+    ['target_folk_pdeu', '5004'],
+    ['target_folk_infocity', '5004'],
+    ['campaign_start_date', '2026-10-25'],
+    ['campaign_end_date', '2026-11-24']
+  ];
+
+  const getSetting = db.prepare(
+    'SELECT value FROM tracker_settings WHERE key = ?'
+  );
+
+  const insertSetting = db.prepare(`
+    INSERT INTO tracker_settings (key, value, updated_at)
+    VALUES (?, ?, ?)
+  `);
+
+  for (const [key, value] of defaults) {
+    if (!getSetting.get(key)) {
+      insertSetting.run(key, value, now);
+    }
   }
 
-  // Provision Initial Administrator Account (Username: admin, Initial Password: smith@123)
   provisionAdminUser();
 }
 
-/**
- * Provision Initial Admin Account Securely
- * Requirement:
- * - Username: admin
- * - Initial password: smith@123
- * - Stored as a strong hash
- * - Require password change on first login
- */
 function provisionAdminUser() {
-  const checkAdmin = db.prepare('SELECT id, must_change_password FROM users WHERE username = ?');
-  const admin = checkAdmin.get('admin');
+  const admin = db.prepare(
+    'SELECT id FROM users WHERE username = ?'
+  ).get('admin');
 
-  if (!admin) {
-    const salt = bcrypt.genSaltSync(12);
-    const passwordHash = bcrypt.hashSync('smith@123', salt);
+  /*
+   * TEMPORARY RESET:
+   * Set RESET_ADMIN_PASSWORD=true in Vercel Environment Variables
+   * only when you intentionally want to reset the admin credentials.
+   *
+   * Remove/disable that variable immediately after the reset attempt.
+   */
+  const resetRequested =
+    process.env.RESET_ADMIN_PASSWORD === 'true';
+
+  if (admin && resetRequested) {
+    const passwordHash = bcrypt.hashSync('smith@123', 12);
     const now = new Date().toISOString();
 
-    const insertAdmin = db.prepare(`
-      INSERT INTO users (username, password_hash, full_name, role, personal_goal, must_change_password, is_active, created_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `);
+    db.prepare(`
+      UPDATE users
+      SET password_hash = ?,
+          role = 'admin',
+          is_active = 1,
+          must_change_password = 1
+      WHERE username = ?
+    `).run(passwordHash, 'admin');
 
-    insertAdmin.run('admin', passwordHash, 'FOLK Temple Administrator', 'admin', 1008, 1, 1, now);
+    // Invalidate previous sessions for the admin.
+    db.prepare(`
+      DELETE FROM sessions
+      WHERE user_id = (
+        SELECT id FROM users WHERE username = ?
+      )
+    `).run('admin');
 
-    // Log admin provisioning in audit log
-    const logAudit = db.prepare(`
-      INSERT INTO audit_logs (user_id, actor_name, action, target_type, target_id, details, ip_address, created_at)
-      VALUES (NULL, 'System', 'ADMIN_PROVISIONED', 'users', 'admin', 'Initial administrator provisioned with forced password change on first login', '127.0.0.1', ?)
-    `);
-    logAudit.run(now);
+    db.prepare(`
+      INSERT INTO audit_logs
+        (user_id, actor_name, action, target_type, target_id,
+         details, ip_address, created_at)
+      VALUES (?, 'System', 'ADMIN_PASSWORD_RESET', 'users',
+              'admin', ?, '127.0.0.1', ?)
+    `).run(
+      admin.id,
+      'Admin password reset using temporary deployment setting',
+      now
+    );
+
+    console.log('Admin reset performed for this database instance.');
+    return;
   }
+
+  // Do not overwrite an existing administrator's password automatically.
+  if (admin) {
+    return;
+  }
+
+  const passwordHash = bcrypt.hashSync('smith@123', 12);
+  const now = new Date().toISOString();
+
+  const result = db.prepare(`
+    INSERT INTO users
+      (username, password_hash, full_name, role, personal_goal,
+       must_change_password, is_active, created_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(
+    'admin',
+    passwordHash,
+    'FOLK Temple Administrator',
+    'admin',
+    1008,
+    1,
+    1,
+    now
+  );
+
+  db.prepare(`
+    INSERT INTO audit_logs
+      (user_id, actor_name, action, target_type, target_id,
+       details, ip_address, created_at)
+    VALUES (?, 'System', 'ADMIN_PROVISIONED', 'users', 'admin',
+            ?, '127.0.0.1', ?)
+  `).run(
+    Number(result.lastInsertRowid),
+    'Initial administrator created',
+    now
+  );
 }
 
-// Initialize on require
 initDatabase();
 
 module.exports = {
